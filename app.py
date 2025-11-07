@@ -193,7 +193,7 @@ JSON_STRUCTURE_EXAMPLE = """{
             "identifier": 0,
             "options_from": "",
             "fetch_function": "",
-            "calculation": "{GoodsReceived^QuantityReceived^GoodsReceived.GRNLineID,RequestForm.CurrentLine,=} * {PurchaseOrder^UnitPrice^PurchaseOrder.POLineID,RequestForm.CurrentLine,=}",
+            "calculation": "{GoodsReceived^QuantityReceived^GoodsReceived.GRNLineID,Invoice.ProductID,=} * {PurchaseOrder^UnitPrice^PurchaseOrder.POLineID,Invoice.ProductID,=}",
             "defaultVal": "",
             "features": "",
             "inherit": 0,
@@ -208,6 +208,152 @@ JSON_STRUCTURE_EXAMPLE = """{
             "sum_func": "",
             "countIf": "",
             "decimals": "2"
+        }
+    ],
+    "operations": [
+        {
+             "id": "1254",
+             "form": "850",
+             "object_field": null,
+             "update_field": null,
+             "fixed_update": null,
+             "update_type": "d_newRecord",
+             "update_val": null,
+             "new_form": "851",
+             "new_form_entity": "",
+             "new_form_entity_level": "Needlu",
+             "operation_group": "0",
+             "display_name": "",
+             "dest_multiplier": "0",
+             "thisForm": "0",
+             "sorting_fields": "",
+             "map_until_field": null,
+             "exe_condition": null,
+             "skip_cal": null,
+             "mapping": [
+                 [
+                     "Test json.GRN No",
+                     "Test json history.Reference No",
+                     "=",
+                     ""
+                 ],
+                 [
+                     "Test json.Item Code",
+                     "Test json history.Item Code",
+                     "=",
+                     ""
+                 ],
+                 [
+                     "Test json.Item Name",
+                     "Test json history.Item Name",
+                     "=",
+                     ""
+                 ],
+                 [
+                     "Test json.Receiving Location",
+                     "Test json history.Location",
+                     "=",
+                     ""
+                 ]
+             ],
+             "operationGroups": [
+                 {
+                     "name": "Test one",
+                     "list": "1254",
+                     "group_type": "0",
+                     "mc_field": "0",
+                     "menue_condition": "",
+                     "mc_value": "",
+                     "exclude_menu": "1",
+                     "on_submit": "1",
+                     "auth_category": "",
+                     "menu_sort": "0"
+                 },
+                 {
+                     "name": "Test one",
+                     "list": "1254",
+                     "group_type": "0",
+                     "mc_field": "0",
+                     "menue_condition": "",
+                     "mc_value": "",
+                     "exclude_menu": "1",
+                     "on_submit": "1",
+                     "auth_category": "",
+                     "menu_sort": "0"
+                 }
+             ]
+        },
+        {
+             "id": "1254",
+             "form": "850",
+             "object_field": null,
+             "update_field": null,
+             "fixed_update": null,
+             "update_type": "d_newRecord",
+             "update_val": null,
+             "new_form": "851",
+             "new_form_entity": "",
+             "new_form_entity_level": "Needlu",
+             "operation_group": "0",
+             "display_name": "",
+             "dest_multiplier": "0",
+             "thisForm": "0",
+             "sorting_fields": "",
+             "map_until_field": null,
+             "exe_condition": null,
+             "skip_cal": null,
+             "mapping": [
+                 [
+                     "Test json.GRN No",
+                     "Test json history.Reference No",
+                     "=",
+                     ""
+                 ],
+                 [
+                     "Test json.Item Code",
+                     "Test json history.Item Code",
+                     "=",
+                     ""
+                 ],
+                 [
+                     "Test json.Item Name",
+                     "Test json history.Item Name",
+                     "=",
+                     ""
+                 ],
+                 [
+                     "Test json.Receiving Location",
+                     "Test json history.Location",
+                     "=",
+                     ""
+                 ]
+             ],
+             "operationGroups": [
+                 {
+                     "name": "Test one",
+                     "list": "1254",
+                     "group_type": "0",
+                     "mc_field": "0",
+                     "menue_condition": "",
+                     "mc_value": "",
+                     "exclude_menu": "1",
+                     "on_submit": "1",
+                     "auth_category": "",
+                     "menu_sort": "0"
+                 },
+                 {
+                     "name": "Test one",
+                     "list": "1254",
+                     "group_type": "0",
+                     "mc_field": "0",
+                     "menue_condition": "",
+                     "mc_value": "",
+                     "exclude_menu": "1",
+                     "on_submit": "1",
+                     "auth_category": "",
+                     "menu_sort": "0"
+                 }
+             ]
         }
     ]
 }"""
@@ -229,6 +375,7 @@ def generate_or_edit_json(prompt):
 **MANDATORY**: Your response MUST be ONLY the complete, valid JSON object. Do not include any narrative or markdown outside of the JSON block.
 
 **CRITICAL INSTRUCTION**: Every object generated within the "fieldsData" array MUST strictly adhere to the full structure provided in the JSON Structure Example, including all keys.
+**MANDATORY DATA TYPES**: The 'data_type' key MUST ONLY use one of these values: **sequence, options, date, text, number, calculation**. Do not use any other data types.
 **MANDATORY**: The value for the `help_text` key MUST ALWAYS be an empty string ("") for ALL fields.
 **SPECIAL INSTRUCTION FOR OPTIONS**: For any field with data_type: "options", you **MUST** include the "formName" key to specify the source form.
 
@@ -264,6 +411,7 @@ JSON Structure Example (Use this exact schema for every field and match the stru
 **MANDATORY**: Your response MUST be ONLY the complete, modified JSON object. Do not include any narrative or markdown outside of the JSON block.
 **CRITICAL**: You MUST preserve all fields not explicitly requested to be changed.
 **SCHEMA REMINDER**: Adhere to the structure in the JSON Structure Example. Use a sorting_value that is appropriate relative to existing fields.
+**MANDATORY DATA TYPES**: The 'data_type' key MUST ONLY use one of these values: **sequence, options, date, text, number, calculation**. Do not use any other data types.
 
 JSON Structure Example (Do not modify the JSON structure itself):
 {JSON_STRUCTURE_EXAMPLE}
@@ -370,7 +518,3 @@ with col2:
         st.info("Start by entering your form requirement (e.g., 'Create a Purchase Order form with fields for Vendor, Item, Quantity, and Price').")
     else:
         st.success("Refine the JSON using the chat interface on the left.")
-
-
-
-
