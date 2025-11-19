@@ -42,160 +42,47 @@ JSON_STRUCTURE_EXAMPLE = """{
     },
     "fieldsData": [
         {
+        
             "data_name": "Invoice ID",
             "data_type": "sequence",
-            "sorting_value": "10",
-            "identifier": 0,
-            "options_from": "",
-            "fetch_function": "",
-            "calculation": "",
-            "defaultVal": "",
-            "features": "",
-            "inherit": 0,
-            "attributes": "readonly",
-            "entityMethod": "",
-            "entityOrLevel": "",
-            "mapping": [],
+            "sorting_value": 1,
             "keyMember": 0,
-            "sumClass": "",
-            "data_info": "",
-            "help_text": "",
-            "sum_func": "",
-            "countIf": "",
-            "decimals": "0",
-            "prefix": "INV",
+            "prefix": "POL",
             "sufix": "",
-            "digits": "5",
+            "digits": "1",
             "replacer": "0",
             "start_with": "1"
+        
         },
-        {
+            {
             "data_name": "Customer Name",
             "data_type": "options",
-            "sorting_value": "20",
-            "identifier": 0,
-            "options_from": "CustomerEntity",
-            "fetch_function": "",
-            "calculation": "",
-            "defaultVal": "",
-            "features": "",
-            "inherit": 0,
-            "attributes": "required",
-            "entityMethod": "",
-            "entityOrLevel": "",
-            "mapping": [],
-            "keyMember": 0,
-            "sumClass": "",
-            "data_info": "",
-            "help_text": "",
-            "sum_func": "",
-            "countIf": "",
-            "decimals": "",
-            "formName": "Customers Details"
+            "sorting_value": 4,
+            "formName": "Customer Details"
         },
 
         {
 
             "data_name": "Invoice Date",
             "data_type": "date",
-            "sorting_value": "30",
-            "identifier": 0,
-            "options_from": "",
-            "fetch_function": "",
-            "calculation": "",
-            "defaultVal": "TODAY",
-            "features": "",
-            "inherit": 0,
-            "attributes": "required",
-            "entityMethod": "",
-            "entityOrLevel": "",
-            "mapping": [],
-            "keyMember": 0,
-            "sumClass": "",
-            "data_info": "",
-            "help_text": "",
-            "sum_func": "",
-            "countIf": "",
-            "decimals": ""
+            "sorting_value": "30"
 
         },
         
         {
 
-            "data_name": "Product ID",
+            "data_name": "Product Name",
             "data_type": "text",
-            "sorting_value": "40",
-            "identifier": 0,
-            "options_from": "ProductsEntity",
-            "fetch_function": "",
-            "calculation": "",
-            "defaultVal": "",
-            "features": "",
-            "inherit": 0,
-            "attributes": "required",
-            "entityMethod": "",
-            "entityOrLevel": "",
-            "mapping": [],
-            "keyMember": 0,
-            "sumClass": "",
-            "data_info": "",
-            "help_text": "",
-            "sum_func": "",
-            "countIf": "",
-            "decimals": ""
-
-            
+            "sorting_value": "30"
+ 
 
         },
 
         {
 
-            "data_name": "Quantity",
+             "data_name": "Unit Price",
             "data_type": "number",
             "sorting_value": "50",
-            "identifier": 0,
-            "options_from": "",
-            "fetch_function": "",
-            "calculation": "",
-            "defaultVal": "",
-            "features": "",
-            "inherit": 0,
-            "attributes": "required",
-            "entityMethod": "",
-            "entityOrLevel": "",
-            "mapping": [],
-            "keyMember": 0,
-            "sumClass": "",
-            "data_info": "",
-            "help_text": "",
-            "sum_func": "",
-            "countIf": "",
-            "decimals": "0"
-
-        },
-
-        {
-
-            "data_name": "Unit Price",
-            "data_type": "number",
-            "sorting_value": "60",
-            "identifier": 0,
-            "options_from": "",
-            "fetch_function": "",
-            "calculation": "",
-            "defaultVal": "",
-            "features": "",
-            "inherit": 0,
-            "attributes": "required",
-            "entityMethod": "",
-            "entityOrLevel": "",
-            "mapping": [],
-            "keyMember": 0,
-            "sumClass": "",
-            "data_info": "",
-            "help_text": "",
-            "sum_func": "",
-            "countIf": "",
             "decimals": "2"
 
         },
@@ -203,24 +90,8 @@ JSON_STRUCTURE_EXAMPLE = """{
         {
             "data_name": "Line Total",
             "data_type": "calculation",
-            "sorting_value": "70",
-            "identifier": 0,
-            "options_from": "",
-            "fetch_function": "",
-            "calculation": "{GoodsReceived^QuantityReceived^GoodsReceived.GRNLineID,Invoice.ProductID,=} * {PurchaseOrder^UnitPrice^PurchaseOrder.POLineID,Invoice.ProductID,=}",
-            "defaultVal": "",
-            "features": "",
-            "inherit": 0,
-            "attributes": "readonly",
-            "entityMethod": "",
-            "entityOrLevel": "",
-            "mapping": [],
-            "keyMember": 0,
-            "sumClass": "",
-            "data_info": "",
-            "help_text": "",
-            "sum_func": "",
-            "countIf": "",
+            "sorting_value": "60",
+            "calculation": "{GoodsReceived^Quantity^GoodsReceived.GRNLineID,Invoice.Product ID,=} * {Invoice.Unit Price}",
             "decimals": "2"
 
         }
@@ -519,3 +390,4 @@ with col2:
         st.info("Start by entering your form requirement (e.g., 'Create a Purchase Order form with fields for Vendor, Item, Quantity, and Price').")
     else:
         st.success("Refine the JSON using the chat interface on the left.")
+
