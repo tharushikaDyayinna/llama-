@@ -30,291 +30,203 @@ if 'is_initial' not in st.session_state:
 
 # --- 3. JSON SCHEMA DEFINITION (Used for prompting) ---
 JSON_STRUCTURE_EXAMPLE = """{
-  "formData": {
-    "entityType": "T Department",
-    "formCategory": "T Form",
-    "formName": "Invoice",
-    "frequency": "any",
-    "editable": 1,
-    "deletable": 1,
-    "newRec": 1,
-    "parentID": 0
-  },
-  "fieldsData": [
-    {
-      "data_name": "Invoice ID",
-      "data_type": "sequence",
-      "sorting_value": "10",
-      "identifier": 0,
-      "options_from": "",
-      "fetch_function": "",
-      "calculation": "",
-      "defaultVal": "",
-      "features": "",
-      "inherit": 0,
-      "attributes": "readonly",
-      "entityMethod": "",
-      "entityOrLevel": "",
-      "mapping": [],
-      "keyMember": 0,
-      "sumClass": "",
-      "data_info": "",
-      "help_text": "",
-      "sum_func": "",
-      "countIf": "",
-      "decimals": "0",
-      "prefix": "INV",
-      "sufix": "",
-      "digits": "5",
-      "replacer": "0",
-      "start_with": "1"
+    "formData": {
+        "entityType": "T Department",
+        "formCategory": "T Form",
+        "formName": "Invoice",
+        "frequency": "any",
+        "editable": 1,
+        "deletable": 1,
+        "newRec": 1,
+        "parentID": 0
     },
-    {
-      "data_name": "Customer Name",
-      "data_type": "options",
-      "sorting_value": "20",
-      "identifier": 0,
-      "options_from": "CustomerEntity",
-      "fetch_function": "",
-      "calculation": "",
-      "defaultVal": "",
-      "features": "",
-      "inherit": 0,
-      "attributes": "required",
-      "entityMethod": "",
-      "entityOrLevel": "",
-      "mapping": [],
-      "keyMember": 0,
-      "sumClass": "",
-      "data_info": "",
-      "help_text": "",
-      "sum_func": "",
-      "countIf": "",
-      "decimals": "",
-      "formName": "Customers Details"
-    },
-    {
-      "data_name": "Invoice Date",
-      "data_type": "date",
-      "sorting_value": "30",
-      "identifier": 0,
-      "options_from": "",
-      "fetch_function": "",
-      "calculation": "",
-      "defaultVal": "TODAY",
-      "features": "",
-      "inherit": 0,
-      "attributes": "required",
-      "entityMethod": "",
-      "entityOrLevel": "",
-      "mapping": [],
-      "keyMember": 0,
-      "sumClass": "",
-      "data_info": "",
-      "help_text": "",
-      "sum_func": "",
-      "countIf": "",
-      "decimals": ""
-    },
-    {
-      "data_name": "Product ID",
-      "data_type": "text",
-      "sorting_value": "40",
-      "identifier": 0,
-      "options_from": "ProductsEntity",
-      "fetch_function": "",
-      "calculation": "",
-      "defaultVal": "",
-      "features": "",
-      "inherit": 0,
-      "attributes": "required",
-      "entityMethod": "",
-      "entityOrLevel": "",
-      "mapping": [],
-      "keyMember": 0,
-      "sumClass": "",
-      "data_info": "",
-      "help_text": "",
-      "sum_func": "",
-      "countIf": "",
-      "decimals": ""
-    },
-    {
-      "data_name": "Quantity",
-      "data_type": "number",
-      "sorting_value": "50",
-      "identifier": 0,
-      "options_from": "",
-      "fetch_function": "",
-      "calculation": "",
-      "defaultVal": "",
-      "features": "",
-      "inherit": 0,
-      "attributes": "required",
-      "entityMethod": "",
-      "entityOrLevel": "",
-      "mapping": [],
-      "keyMember": 0,
-      "sumClass": "",
-      "data_info": "",
-      "help_text": "",
-      "sum_func": "",
-      "countIf": "",
-      "decimals": "0"
-    },
-    {
-      "data_name": "Unit Price",
-      "data_type": "number",
-      "sorting_value": "60",
-      "identifier": 0,
-      "options_from": "",
-      "fetch_function": "",
-      "calculation": "",
-      "defaultVal": "",
-      "features": "",
-      "inherit": 0,
-      "attributes": "required",
-      "entityMethod": "",
-      "entityOrLevel": "",
-      "mapping": [],
-      "keyMember": 0,
-      "sumClass": "",
-      "data_info": "",
-      "help_text": "",
-      "sum_func": "",
-      "countIf": "",
-      "decimals": "2"
-    },
-    {
-      "data_name": "Line Total",
-      "data_type": "calculation",
-      "sorting_value": "70",
-      "identifier": 0,
-      "options_from": "",
-      "fetch_function": "",
-      "calculation": "{GoodsReceived^QuantityReceived^GoodsReceived.GRNLineID,Invoice.ProductID,=} * {PurchaseOrder^UnitPrice^PurchaseOrder.POLineID,Invoice.ProductID,=}",
-      "defaultVal": "",
-      "features": "",
-      "inherit": 0,
-      "attributes": "readonly",
-      "entityMethod": "",
-      "entityOrLevel": "",
-      "mapping": [],
-      "keyMember": 0,
-      "sumClass": "",
-      "data_info": "",
-      "help_text": "",
-      "sum_func": "",
-      "countIf": "",
-      "decimals": "2"
-    }
-  ],
-  "operations": [
-    {
-      "id": "",
-      "form": "",
-      "object_field": null,
-      "update_field": null,
-      "fixed_update": null,
-      "update_type": "d_newRecord",
-      "update_val": null,
-      "new_form": "851",
-      "new_form_entity": "",
-      "new_form_entity_level": "Needlu",
-      "operation_group": "0",
-      "display_name": "",
-      "dest_multiplier": "0",
-      "thisForm": "0",
-      "sorting_fields": "",
-      "map_until_field": null,
-      "exe_condition": null,
-      "skip_cal": null,
-      "mapping": [
-        ["Invoice.Invoice ID", "Invoice history.Reference No", "=", ""],
-        ["Invoice.Customer Name", "Invoice history.Customer Name", "=", ""]
-      ],
-      "operationGroups": [
+    "fieldsData": [
         {
-          "name": "Invoice Update",
-          "list": "1253",
-          "group_type": "0",
-          "mc_field": "0",
-          "menue_condition": "",
-          "mc_value": "",
-          "exclude_menu": "1",
-          "on_submit": "1",
-          "auth_category": "",
-          "menu_sort": "0"
+        
+            "data_name": "Invoice ID",
+            "data_type": "sequence",
+            "sorting_value": 1,
+            "keyMember": 0,
+            "prefix": "POL",
+            "sufix": "",
+            "digits": "1",
+            "replacer": "0",
+            "start_with": "1"
+        
         },
-        {
-          "name": "Auto Submitting",
-          "list": "1254",
-          "group_type": "0",
-          "mc_field": "0",
-          "menue_condition": "",
-          "mc_value": "",
-          "exclude_menu": "1",
-          "on_submit": "1",
-          "auth_category": "",
-          "menu_sort": "0"
-        }
-      ]
-    },
-    {
-      "id": "",
-      "form": "",
-      "object_field": null,
-      "update_field": null,
-      "fixed_update": null,
-      "update_type": "d_newRecord",
-      "update_val": null,
-      "new_form": "851",
-      "new_form_entity": "",
-      "new_form_entity_level": "Needlu",
-      "operation_group": "0",
-      "display_name": "",
-      "dest_multiplier": "0",
-      "thisForm": "0",
-      "sorting_fields": "",
-      "map_until_field": null,
-      "exe_condition": null,
-      "skip_cal": null,
-      "mapping": [
-        ["Invoice.Invoice ID", "Invoice history.Reference No", "=", ""],
-        ["Invoice.Customer Name", "Invoice history.Customer Name", "=", ""],
-        ["Invoice.Product ID", "Invoice history.Item ID", "=", ""],
-        ["Invoice.Invoice Date", "Invoice history.Date", "=", ""]
-      ],
-      "operationGroups": [
-        {
-          "name": "Need to Paid",
-          "list": "1255",
-          "group_type": "0",
-          "mc_field": "0",
-          "menue_condition": "",
-          "mc_value": "",
-          "exclude_menu": "1",
-          "on_submit": "1",
-          "auth_category": "",
-          "menu_sort": "0"
+            {
+            "data_name": "Customer Name",
+            "data_type": "options",
+            "sorting_value": 4,
+            "formName": "Customer Details"
         },
+
         {
-          "name": "Release",
-          "list": "1256",
-          "group_type": "0",
-          "mc_field": "0",
-          "menue_condition": "",
-          "mc_value": "",
-          "exclude_menu": "2",
-          "on_submit": "1",
-          "auth_category": "",
-          "menu_sort": "0"
+
+            "data_name": "Invoice Date",
+            "data_type": "date",
+            "sorting_value": "30"
+
+        },
+        
+        {
+
+            "data_name": "Product Name",
+            "data_type": "text",
+            "sorting_value": "30"
+ 
+
+        },
+
+        {
+
+             "data_name": "Unit Price",
+            "data_type": "number",
+            "sorting_value": "50",
+            "decimals": "2"
+
+        },
+
+        {
+            "data_name": "Line Total",
+            "data_type": "calculation",
+            "sorting_value": "60",
+            "calculation": "{GoodsReceived^Quantity^GoodsReceived.GRNLineID,Invoice.Product ID,=} * {Invoice.Unit Price}",
+            "decimals": "2"
+
         }
-      ]
-    }
-  ]
-}
-"""
+
+
+    ],
+    "operations": [
+        {
+            "id": "",
+            "form": "",
+            "object_field": null,
+            "update_field": null,
+            "fixed_update": null,
+            "update_type": "d_newRecord",
+            "update_val": null,
+            "new_form": "851",
+            "new_form_entity": "",
+            "new_form_entity_level": "Needlu",
+            "operation_group": "0",
+            "display_name": "",
+            "dest_multiplier": "0",
+            "thisForm": "0",
+            "sorting_fields": "",
+            "map_until_field": null,
+            "exe_condition": null,
+            "skip_cal": null,
+            "mapping": [
+                ["Invoice.Invoice ID", "Invoice history.Reference No", "=", ""],
+                ["Invoice.Customer Name", "Invoice history.Customer Name", "=", ""]
+            ],
+            "operationGroups": [
+                {
+                    "name": "Invoice Update",
+                    "list": "1253",
+                    "group_type": "0",
+                    "mc_field": "0",
+                    "menue_condition": "",
+                    "mc_value": "",
+                    "exclude_menu": "1",
+                    "on_submit": "1",
+                    "auth_category": "",
+                    "menu_sort": "0"
+                } ,
+                {
+                    "name": "Auto Submitting",
+                    "list": "1254",
+                    "group_type": "0",
+                    "mc_field": "0",
+                    "menue_condition": "",
+                    "mc_value": "",
+                    "exclude_menu": "1",
+                    "on_submit": "1",
+                    "auth_category": "",
+                    "menu_sort": "0"
+                }
+               ]
+             },
+
+{
+            "id": "",
+            "form": "",
+            "object_field": null,
+            "update_field": null,
+            "fixed_update": null,
+            "update_type": "d_newRecord",
+            "update_val": null,
+            "new_form": "851",
+            "new_form_entity": "",
+            "new_form_entity_level": "Needlu",
+            "operation_group": "0",
+            "display_name": "",
+            "dest_multiplier": "0",
+            "thisForm": "0",
+            "sorting_fields": "",
+            "map_until_field": null,
+            "exe_condition": null,
+            "skip_cal": null,
+            "mapping": [
+                 [
+                     "Invoice.Invoice ID",
+                     "Invoice history.Reference No",
+                     "=",
+                     ""
+                 ],
+                 [
+                     "Invoice.Customer Name",
+                     "Invoice history.Customer Name",
+                     "=",
+                     ""
+                 ],
+                 [
+                     "Invoice.Product ID",
+                     "Invoice history.Item ID",
+                     "=",
+                     ""
+                 ],
+                 [
+                     "Invoice.Invoice Date",
+                     "Invoice history.Date",
+                     "=",
+                     ""
+                 ]
+             ],
+            "operationGroups": [
+                {
+                    "name": "Need to Paid ",
+                    "list": "1255",
+                    "group_type": "0",
+                    "mc_field": "0",
+                    "menue_condition": "",
+                    "mc_value": "",
+                    "exclude_menu": "1",
+                    "on_submit": "1",
+                    "auth_category": "",
+                    "menu_sort": "0"
+                },
+                {
+                    "name": "Release",
+                    "list": "1256",
+                    "group_type": "0",
+                    "mc_field": "0",
+                    "menue_condition": "",
+                    "mc_value": "",
+                    "exclude_menu": "2",
+                    "on_submit": "1",
+                    "auth_category": "",
+                    "menu_sort": "0"
+                }
+            ]
+        }
+    ]
+            
+        
+    
+}"""
 
 
 # --- 4. CORE GENERATION / EDITING FUNCTION (Updated for Gemini) ---
@@ -478,5 +390,4 @@ with col2:
         st.info("Start by entering your form requirement (e.g., 'Create a Purchase Order form with fields for Vendor, Item, Quantity, and Price').")
     else:
         st.success("Refine the JSON using the chat interface on the left.")
-
 
