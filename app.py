@@ -4,8 +4,13 @@ from google.genai import types
 import json
 
 # --- 1. API Key and Client Initialization ---
-# The API key you provided. Note: Real keys should be stored securely.
-GOOGLE_API_KEY = "AIzaSyAXblo6LI0X9Iy9FiRdONWn5QD73QbbH8g"
+
+# Check if the key exists in secrets
+if "GOOGLE_API_KEY" in st.secrets:
+    api_key = st.secrets["GOOGLE_API_KEY"]
+else:
+    st.error("Missing Google API Key. Please add it to .streamlit/secrets.toml")
+    st.stop()
 
 # Initialize the Google GenAI client and model name
 client = None
@@ -390,6 +395,7 @@ with col2:
         st.info("Start by entering your form requirement (e.g., 'Create a Purchase Order form with fields for Vendor, Item, Quantity, and Price').")
     else:
         st.success("Refine the JSON using the chat interface on the left.")
+
 
 
 
