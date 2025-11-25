@@ -1,16 +1,14 @@
+import os
+from dotenv import load_dotenv
 import streamlit as st
 from google import genai
 from google.genai import types
 import json
 
-# --- 1. API Key and Client Initialization ---
+# Load environment variables
+load_dotenv()
 
-# Check if the key exists in secrets
-if "GOOGLE_API_KEY" in st.secrets:
-    api_key = st.secrets["GOOGLE_API_KEY"]
-else:
-    st.error("Missing Google API Key. Please add it to .streamlit/secrets.toml")
-    st.stop()
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
 # Initialize the Google GenAI client and model name
 client = None
@@ -395,6 +393,7 @@ with col2:
         st.info("Start by entering your form requirement (e.g., 'Create a Purchase Order form with fields for Vendor, Item, Quantity, and Price').")
     else:
         st.success("Refine the JSON using the chat interface on the left.")
+
 
 
 
